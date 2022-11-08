@@ -42,9 +42,9 @@ import (
 	"strings"
 
 	// Caltech Library Packages
-	"github.com/caltechlibrary/cli"
-	"github.com/caltechlibrary/dotpath"
-	ot "github.com/caltechlibrary/orcidtools"
+	"github.com/jobdiogenes/cli"
+	"github.com/jobdiogenes/dotpath"
+	ot "github.com/jobdiogenes/orcidtools"
 )
 
 var (
@@ -278,7 +278,7 @@ func main() {
 		qry := map[string]string{
 			"q": searchString,
 		}
-		src, err := api.Request("GET", "/v2.0/search/", qry)
+		src, err := api.Request("GET", "/v3.0/search/", qry)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "%s", err)
 			os.Exit(1)
@@ -291,7 +291,7 @@ func main() {
 		orcidID = os.Getenv("ORCID_ID")
 	}
 	if requestType == "works-detailed" {
-		src, err := api.Request("GET", fmt.Sprintf("/v2.0/%s/%s", orcidID, "works"), map[string]string{})
+		src, err := api.Request("GET", fmt.Sprintf("/v3.0/%s/%s", orcidID, "works"), map[string]string{})
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "%s", err)
 			os.Exit(1)
@@ -312,7 +312,7 @@ func main() {
 				}
 			}
 			if len(workIds) > 0 {
-				src, err := api.Request("GET", fmt.Sprintf("/v2.0/%s/%s/%s", orcidID, "works", strings.Join(workIds, ",")), map[string]string{})
+				src, err := api.Request("GET", fmt.Sprintf("/v3.0/%s/%s/%s", orcidID, "works", strings.Join(workIds, ",")), map[string]string{})
 				if err != nil {
 					fmt.Fprintf(os.Stderr, "%s", err)
 					os.Exit(1)
@@ -328,7 +328,7 @@ func main() {
 			os.Exit(1)
 		}
 	} else {
-		src, err := api.Request("GET", fmt.Sprintf("/v2.0/%s/%s", orcidID, requestType), map[string]string{})
+		src, err := api.Request("GET", fmt.Sprintf("/v3.0/%s/%s", orcidID, requestType), map[string]string{})
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "%s", err)
 			os.Exit(1)
