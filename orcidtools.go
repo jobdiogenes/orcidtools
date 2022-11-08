@@ -37,6 +37,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+
 	//"log"
 	"net/http"
 	"net/url"
@@ -46,7 +47,7 @@ import (
 
 const (
 	// Version of ot package
-	Version = `v0.0.6`
+	Version = `v0.0.7`
 
 	// License string suitable to populate via cli
 	LicenseText = `
